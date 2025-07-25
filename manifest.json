@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "USCF Table Fix",
+  "version": "1.0",
+  "description": "Fixes table alignment on USCF MSA pages",
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.uschess.org/msa/MbrDtl*"],
+      "js": ["content.js"]
+    }
+  ]
+}
