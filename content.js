@@ -70,4 +70,85 @@
       }
     }
   }
+
+  if (currentUrl.match(/^https:\/\/www\.uschess\.org\/msa\/MbrDtlTnmtDir\.php.*/)) {
+    // Extract name and USCF ID from the specified DOM path
+    const nameElement = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(1) > td > font > b");
+    if (nameElement) {
+      const fullName = nameElement.textContent.trim();
+      const nameParts = fullName.split(/\s+/);
+      const uscfId = (nameParts[0] || '').slice(0, -1);
+      const firstName = nameParts[1] || '';
+      const lastName = nameParts[nameParts.length - 1] || '';
+      const safeSportUrl = `https://new.uschess.org/safesport-certified-tds?first_name=${encodeURIComponent(firstName)}&last_name=${encodeURIComponent(lastName)}&uscf_state_22=All&gender_id=All`;
+      console.log(`Constructed SafeSport URL: ${safeSportUrl}`);
+      
+      // Send message to background script to fetch SafeSport data
+      chrome.runtime.sendMessage({
+        action: 'fetchSafeSport',
+        url: safeSportUrl,
+        uscfId: uscfId
+      }, response => {
+        if (chrome.runtime.lastError) {
+          console.error('Error sending message to background:', chrome.runtime.lastError);
+          return;
+        }
+        console.log('SafeSport Response:', response);
+        if (response.status === 'success' && response.html) {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(response.html, 'text/html');
+          
+          // Find the table and get the last row
+          const table = doc.querySelector("#block-skvare-custom-theme-content > div > div > table > tbody");
+          if (!table) {
+            console.error('SafeSport table not found');
+            return;
+          }
+          const rows = table.querySelectorAll('tr');
+          const lastRow = rows[rows.length - 1];
+          if (!lastRow) {
+            console.error('No rows found in SafeSport table');
+            return;
+          }
+          
+          // Verify USCF ID
+          const uscfIdElement = lastRow.querySelector('td.views-field.views-field-external-identifier');
+          if (!uscfIdElement) {
+            console.error('USCF ID element not found in last row');
+            return;
+          }
+          const fetchedUscfId = uscfIdElement.textContent.trim();
+          if (fetchedUscfId !== response.uscfId) {
+            console.error(`USCF ID mismatch: expected ${response.uscfId}, got ${fetchedUscfId}`);
+            return;
+          }
+          
+          // Extract expiration date
+          const dateElement = lastRow.querySelector('td.views-field.views-field-nothing');
+          if (!dateElement) {
+            console.error('Expiration date element not found in last row');
+            return;
+          }
+          const expirationDate = dateElement.textContent.trim();
+          
+          // Update the DOM with the expiration date
+          const targetElement = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(2) > tbody > tr:nth-child(2) > td:nth-child(2)");
+          if (targetElement) {
+            targetElement.innerHTML = `<strong>Expiration Date: ${expirationDate}</strong>`;
+            // Remove the certification notice text (uneeded after update)
+            const certificationNoticeText = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(2) > tbody > tr:nth-child(3) > td:nth-child(2)")
+            certificationNoticeText.remove();
+            console.log(`Updated DOM with expiration date: ${expirationDate}`);
+          } else {
+            console.error('Target element for date update not found');
+          }
+        } else {
+          console.error('No valid HTML received or fetch failed');
+        }
+      });
+    } else {
+      console.error('Name element not found at specified DOM path');
+    }
+  }
+
 })();
