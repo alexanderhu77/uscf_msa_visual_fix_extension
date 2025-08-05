@@ -14,5 +14,5 @@ This Chrome extension addresses a visual alignment issue on the United States Ch
    - Click "Load unpacked" and select the folder containing the extension files
 
 2. **Access USCF MSA Pages**:
-   - Visit any USCF MSA member detail page, using `https://www.uschess.org/msa/MbrDtlTnmtDir.php?{USCF_ID}`.
+   - Visit any USCF MSA member detail page, using `https://www.uschess.org/msa/MbrDtlMain.php?{USCF_ID}`.
    - The extension will automatically apply visual fixes and check for SafeSport certification.
