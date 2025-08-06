@@ -187,6 +187,11 @@
     if (notesText){
       notesText.innerHTML = `<strong>${notesText.textContent}</strong>`;
     }
+
+    let sourceText = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(3) > tbody > tr:nth-child(1) > td:nth-child(2) > b")
+    if (sourceText) {
+      sourceText.innerHTML = `<strong>Supplement Month</strong>`;
+    }
   }
 
 })();
