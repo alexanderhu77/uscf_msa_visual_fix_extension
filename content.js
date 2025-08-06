@@ -72,6 +72,10 @@
   }
 
   if (currentUrl.match(/^https:\/\/www\.uschess\.org\/msa\/MbrDtlTnmtDir\.php.*/)) {
+
+    // Remove the certification notice text (uneeded after update)
+    const certificationNoticeText = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(2) > tbody > tr:nth-child(3) > td:nth-child(2)")
+    certificationNoticeText.remove();
     // Extract name and USCF ID from the specified DOM path
     const nameElement = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(1) > td > font > b");
     if (nameElement) {
@@ -101,7 +105,11 @@
           // Find the table and get the last row
           const table = doc.querySelector("#block-skvare-custom-theme-content > div > div > table > tbody");
           if (!table) {
-            console.error('SafeSport table not found');
+            const targetElement = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(2) > tbody > tr:nth-child(2) > td:nth-child(2)");
+            if (targetElement) {
+              targetElement.innerHTML = `<strong>Expiration Date: N/A </strong>`;
+              console.log(`Updated DOM with expiration date: N/A`);
+            }
             return;
           }
           const rows = table.querySelectorAll('tr');
@@ -135,9 +143,6 @@
           const targetElement = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(2) > tbody > tr:nth-child(2) > td:nth-child(2)");
           if (targetElement) {
             targetElement.innerHTML = `<strong>Expiration Date: ${expirationDate}</strong>`;
-            // Remove the certification notice text (uneeded after update)
-            const certificationNoticeText = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(2) > tbody > tr:nth-child(3) > td:nth-child(2)")
-            certificationNoticeText.remove();
             console.log(`Updated DOM with expiration date: ${expirationDate}`);
           } else {
             console.error('Target element for date update not found');
