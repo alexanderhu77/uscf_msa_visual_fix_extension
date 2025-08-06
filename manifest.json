@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "USCF MSA Visual Fix",
+  "name": "USCF MSA Visual and Quality of Life Improvements",
   "version": "1.0",
-  "description": "Fixes visual alignment on USCF MSA pages and checks SafeSport certification",
+  "description": "Various visual and quality of life improvements on USCF MSA pages",
   "permissions": [
     "activeTab",
     "background",
