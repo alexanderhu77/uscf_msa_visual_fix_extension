@@ -150,5 +150,31 @@
       console.error('Name element not found at specified DOM path');
     }
   }
+  if (currentUrl.match(/^https:\/\/www\.uschess\.org\/msa\/MbrDtlMilestones\.php.*/)) {
+
+    let table = document.querySelector(
+      "body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(3) > tbody"
+    );
+
+    if (table) {
+      let rows = table.querySelectorAll("tr");
+
+      for (let i = 1; i < rows.length; i++) {
+        let dateCell = rows[i].querySelector("td:nth-child(2)");
+        let resultCell = rows[i].querySelector("td:nth-child(3)");
+
+        if (dateCell && resultCell) {
+          let resultText = resultCell.textContent.trim();
+          let words = resultText.split(/\s+/);
+
+          if (words.length > 0 && words[words.length - 1] === "WIns") {
+            words[words.length - 1] = "Wins";
+            resultCell.textContent = words.join(" ");
+          }
+        }
+      }
+    }
+  }
+
 
 })();
