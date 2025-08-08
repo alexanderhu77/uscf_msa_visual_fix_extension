@@ -6,12 +6,13 @@ This Chrome extension addresses a visual alignment issue on the United States Ch
 
 - **Visual Alignment Fix**: Corrects table layouts and image spacing on USCF MSA pages for a cleaner, more consistent display.
 - **SafeSport Certification Check**: Automatically retrieves and displays the SafeSport certification expiration date for tournament directors directly on the MSA page.
+- **Typo and Wording Fixes**: Fixes some typos and improves wording on the MSA pages.
 
 ## How to Use
 
 1. **Install the Extension**:
    - Open Google Chrome and navigate to `chrome://extensions/`.
-   - Click "Load unpacked" and select the folder containing the extension files
+   - Click "Load unpacked" and select the folder containing the extension files.
 
 2. **Access USCF MSA Pages**:
    - Visit any USCF MSA member detail page, using `https://www.uschess.org/msa/MbrDtlMain.php?{USCF_ID}`.
