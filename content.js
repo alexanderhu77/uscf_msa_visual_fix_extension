@@ -83,7 +83,7 @@
       const nameParts = fullName.split(/\s+/);
       const uscfId = (nameParts[0] || '').slice(0, -1);
       const firstName = nameParts[1] || '';
-      const lastName = nameParts[nameParts.length - 1] || '';
+      const lastName = nameParts.slice(2).join(' '); '';
       const safeSportUrl = `https://new.uschess.org/safesport-certified-tds?first_name=${encodeURIComponent(firstName)}&last_name=${encodeURIComponent(lastName)}&uscf_state_22=All&gender_id=All`;
       console.log(`Constructed SafeSport URL: ${safeSportUrl}`);
       
