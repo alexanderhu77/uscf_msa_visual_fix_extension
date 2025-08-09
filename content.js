@@ -1,8 +1,21 @@
 (function() {
   const currentUrl = window.location.href;
 
+  /*
+  Don't to do this in case players have "thru" in their names.
+  document.querySelectorAll('body *').forEach(el => {
+    if (el.children.length === 0) { // only leaf nodes
+        el.textContent = el.textContent.replace(/\bthru\b/g, 'through');
+    }
+  });
+  */
+
   // Handle tournament history pages specifically
   if (currentUrl.match(/^https:\/\/www\.uschess\.org\/msa\/MbrDtlTnmtHst\.php.*/)) {
+
+    tableCaption = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(3) > tbody > tr:nth-child(1) > td > font > b")
+    tableCaption.innerHTML = `<strong>${tableCaption.textContent.replace(/\bthru\b/g, 'through')}</strong>`;
+
     const outerTable = document.querySelector('table[bgcolor="FFFFFF"][width="764"]');
     if (outerTable) {
       const innerTable = outerTable.querySelector('table[bgcolor="FFFF80"]');
@@ -72,6 +85,10 @@
   }
 
   if (currentUrl.match(/^https:\/\/www\.uschess\.org\/msa\/MbrDtlTnmtDir\.php.*/)) {
+
+
+    tableCaption = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(5) > tbody > tr > td > table > tbody > tr:nth-child(1) > td > font > b")
+    tableCaption.innerHTML = `<strong>${tableCaption.textContent.replace(/\bthru\b/g, 'through')}</strong>`;
 
     // Remove the certification notice text (uneeded after update)
     const certificationNoticeText = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(2) > tbody > tr:nth-child(3) > td:nth-child(2)")
