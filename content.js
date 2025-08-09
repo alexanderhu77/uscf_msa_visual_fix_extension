@@ -107,7 +107,7 @@
           if (!table) {
             const targetElement = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(2) > tbody > tr:nth-child(2) > td:nth-child(2)");
             if (targetElement) {
-              targetElement.innerHTML = `<strong>Expiration Date: N/A </strong>`;
+              targetElement.innerHTML = `<strong>Expiration date not found. Please search on <a href="https://new.uschess.org/safesport-certified-tds"> https://new.uschess.org/safesport-certified-tds </a> </strong>`;
               console.log(`Updated DOM with expiration date: N/A`);
             }
             return;
