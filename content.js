@@ -182,8 +182,11 @@
       console.error('Name element not found at specified DOM path');
     }
 
-    tableCaption = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(5) > tbody > tr > td > table > tbody > tr:nth-child(1) > td > font > b")
-    tableCaption.innerHTML = `<strong>${tableCaption.textContent.replace(/\bthru\b/g, 'through')}</strong>`;
+    let tableCaption = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(5) > tbody > tr > td > table > tbody > tr:nth-child(1) > td > font > b")
+    if (tableCaption) {
+      tableCaption.innerHTML = `<strong>${tableCaption.textContent.replace(/\bthru\b/g, 'through')}</strong>`;
+    }
+
   }
   if (currentUrl.match(/^https:\/\/www\.uschess\.org\/msa\/MbrDtlMilestones\.php.*/)) {
 
