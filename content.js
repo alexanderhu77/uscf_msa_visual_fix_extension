@@ -2,7 +2,7 @@
   const currentUrl = window.location.href;
 
   /*
-  Don't to do this in case players have "thru" in their names.
+  Don't want to do this in case players have "thru" in their names.
   document.querySelectorAll('body *').forEach(el => {
     if (el.children.length === 0) { // only leaf nodes
         el.textContent = el.textContent.replace(/\bthru\b/g, 'through');
