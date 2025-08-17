@@ -41,7 +41,7 @@
             // Add back margin-right: 2px for each image
             otherWidth += 2;
           });
-          const newWidth = Math.max(0, totalWidth - otherWidth);
+          const newWidth = Math.max(0, totalWidth - otherWidth -1);
           paddingImg.style.width = `${newWidth}px`;
           paddingImg.style.display = 'inline';
           paddingImg.style.float = 'left';
@@ -73,7 +73,7 @@
           otherImages.forEach(img => {
             otherWidth += img.width ? parseInt(img.width) : 0;
           });
-          const newWidth = Math.max(0, totalWidth - otherWidth - 10);
+          const newWidth = Math.max(0, totalWidth - otherWidth - 11);
           paddingImg.style.width = `${newWidth}px`;
           paddingImg.style.display = 'inline-block';
           paddingImg.style.float = 'none';
