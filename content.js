@@ -61,7 +61,7 @@
         const parentTd = innerTable.parentElement;
         if (parentTd) {
           parentTd.style.paddingTop = '5px';
-          parentTd.style.padding = '5px 0 0 0';
+          parentTd.style.padding = '5px 0 -5 0';
           parentTd.style.width = '100%';
         }
         const paddingImg = innerTable.querySelector('img[src="Img/tbsPad.gif"][width="230"]');
