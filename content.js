@@ -194,6 +194,12 @@
   }
   if (currentUrl.match(/^https:\/\/www\.uschess\.org\/msa\/MbrDtlMilestones\.php.*/)) {
 
+    let notesText = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(3) > tbody > tr:nth-child(1) > td:nth-child(6)")
+    
+    if (notesText){
+      notesText.innerHTML = `<strong>${notesText.textContent}</strong>`;
+    }
+
     let table = document.querySelector(
       "body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(3) > tbody"
     );
