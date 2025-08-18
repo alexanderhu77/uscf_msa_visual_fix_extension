@@ -14,7 +14,11 @@
   if (currentUrl.match(/^https:\/\/www\.uschess\.org\/msa\/MbrDtlTnmtHst\.php.*/)) {
 
     tableCaption = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(3) > tbody > tr:nth-child(1) > td > font > b")
-    tableCaption.innerHTML = `<strong>${tableCaption.textContent.replace(/\bthru\b/g, 'through')}</strong>`;
+    
+    if (tableCaption){
+      tableCaption.innerHTML = `<strong>${tableCaption.textContent.replace(/\bthru\b/g, 'through')}</strong>`;
+    }
+    
 
     const outerTable = document.querySelector('table[bgcolor="FFFFFF"][width="764"]');
     if (outerTable) {
