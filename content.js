@@ -2,7 +2,18 @@
   const currentUrl = window.location.href;
 
   /*
-  Don't want to do this in case players have "thru" in their names.
+  * NOTE: Disabled code below replaces the word "thru" with "through" in all leaf text nodes.
+  * This is NOT safe for our use case, because player names or other text could legitimately
+  * contain the substring "thru", which we must preserve.
+  *
+  * If in the future we want to normalize spelling, this replacement should be applied only
+  * to non-player text.
+  *
+  * Keeping the code here for reference, but it must not be enabled as-is.
+  *
+  * Example risk: a player with the name "Thruxton" would be incorrectly altered.
+  */
+  /*
   document.querySelectorAll('body *').forEach(el => {
     if (el.children.length === 0) { // only leaf nodes
         el.textContent = el.textContent.replace(/\bthru\b/g, 'through');
