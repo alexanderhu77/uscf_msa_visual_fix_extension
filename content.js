@@ -21,7 +21,7 @@
   });
   */
 
-  // Handle tournament history pages specifically
+  // Handle tournament history page
   if (currentUrl.match(/^https:\/\/www\.uschess\.org\/msa\/MbrDtlTnmtHst\.php.*/)) {
 
     tableCaption = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(3) > tbody > tr:nth-child(1) > td > font > b")
@@ -99,10 +99,8 @@
     }
   }
 
+  // Handle tournament director history page
   if (currentUrl.match(/^https:\/\/www\.uschess\.org\/msa\/MbrDtlTnmtDir\.php.*/)) {
-
-
-
 
     // Remove the certification notice text (uneeded after update)
     const certificationNoticeText = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(2) > tbody > tr:nth-child(3) > td:nth-child(2)")
@@ -203,6 +201,8 @@
     }
 
   }
+
+  // Handle player milestones page
   if (currentUrl.match(/^https:\/\/www\.uschess\.org\/msa\/MbrDtlMilestones\.php.*/)) {
 
     let notesText = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(3) > tbody > tr:nth-child(1) > td:nth-child(6)")
@@ -234,6 +234,8 @@
       }
     }
   }
+
+  // Handle rating supplement pages
   if (currentUrl.match(/^https:\/\/www\.uschess\.org\/msa\/MbrDtlRtgSupp\.php.*/)) {
 
     let notesText = document.querySelector("body > table > tbody > tr:nth-child(3) > td > center > table:nth-child(4) > tbody > tr:nth-child(2) > td > table:nth-child(3) > tbody > tr:nth-child(1) > td:nth-child(9)");
@@ -247,5 +249,4 @@
       sourceText.innerHTML = `<strong>Supplement Month</strong>`;
     }
   }
-
 })();
